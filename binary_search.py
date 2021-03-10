@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 # Binary Search
+# Leetcode: 704
+# 要点： 
+# 1.确定开闭区间，更新左右索引遵循开闭原则
+# 2.中间值确定避免溢出
+# 3.考虑都比target小、都比target大，以及target在两端的情况
 from typing import List
 
 # Description: 给定排序数组从小到大排列，找到目标数字;
@@ -47,6 +52,7 @@ def binary_search_left_bound(nums: List[int], target: int) -> int:
         elif nums[mid] < target:
             left = mid + 1
     # 退出条件是left和right相等，那么left代表什么
+    # left in [0, len]
     # [2,3,4,5] 8, left=length=4=right
     # [3,4,5,6] 2, left=0=right
     # [2,4,5,6] 2, left=0=right
@@ -64,6 +70,7 @@ def binary_search_right_bound(nums: List[int], target: int) -> int:
             right = mid
         elif nums[mid] < target:
             left = mid + 1
+    # left in [0, len]
     # [2,3,4,5] 8, left=length=right=4
     # [2,3,4,8] 8, left=length=right=4
     # [2,3,4,6] 1, left=right=0
